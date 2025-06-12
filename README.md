@@ -1,5 +1,9 @@
 # ytwrap
 
+[![PyPI version](https://img.shields.io/pypi/v/ytwrap.svg)](https://pypi.org/project/ytwrap/)
+[![Python versions](https://img.shields.io/pypi/pyversions/ytwrap.svg)](https://pypi.org/project/ytwrap/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 YouTube Data API v3用Pythonラッパーです。
 
 ## インストール
