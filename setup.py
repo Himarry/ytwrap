@@ -2,9 +2,14 @@ from setuptools import setup, find_packages
 
 setup(
     name="ytwrap",
-    version="0.1.2",
+    version="0.1.5",
     description="YouTube Data API v3 ラッパーライブラリ",
     author="Himarry",
+    url="https://github.com/Himarry/ytwrap",
+    project_urls={
+        "Source": "https://github.com/Himarry/ytwrap",
+        "Tracker": "https://github.com/Himarry/ytwrap/issues",
+    },
     packages=find_packages(),
     install_requires=[
         "google-api-python-client"
