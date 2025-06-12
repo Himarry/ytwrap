@@ -5,8 +5,8 @@ with open("pypi.md", encoding="utf-8") as f:
 
 setup(
     name="ytwrap",
-    version="0.1.6",
-    description="A general-purpose Python wrapper library for the YouTube Data API v3. Easily retrieve and analyze YouTube video and comment data, and access various YouTube Data API v3 features from Python.",
+    version="0.1.7",
+    description="Python wrapper for the YouTube Data API v3.",
     author="Himarry",
     url="https://github.com/Himarry/ytwrap",
     project_urls={
