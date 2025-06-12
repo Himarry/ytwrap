@@ -5,8 +5,7 @@ setup(
     version="0.1.2",
     description="YouTube Data API v3 ラッパーライブラリ",
     author="Himarry",
-    packages=find_packages('ytwrap'),
-    package_dir={"": "ytwrap"},
+    packages=find_packages(),
     install_requires=[
         "google-api-python-client"
     ],
