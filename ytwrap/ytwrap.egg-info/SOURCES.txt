@@ -1,6 +1,8 @@
 LICENSE
 MANIFEST.in
 README.md
+bump_version.py
+release.py
 setup.py
 test_ytwrap.py
 ytwrap/ytwrap.egg-info/PKG-INFO
