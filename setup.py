@@ -1,9 +1,12 @@
 from setuptools import setup, find_packages
 
+with open("pypi.md", encoding="utf-8") as f:
+    long_description = f.read()
+
 setup(
     name="ytwrap",
-    version="0.1.5",
-    description="YouTube Data API v3 ラッパーライブラリ",
+    version="0.1.6",
+    description="A general-purpose Python wrapper library for the YouTube Data API v3. Easily retrieve and analyze YouTube video and comment data, and access various YouTube Data API v3 features from Python.",
     author="Himarry",
     url="https://github.com/Himarry/ytwrap",
     project_urls={
@@ -24,4 +27,6 @@ setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
     ],
+    long_description=long_description,
+    long_description_content_type="text/markdown",
 )

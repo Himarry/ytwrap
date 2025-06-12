@@ -6,6 +6,8 @@
 
 YouTube Data API v3用Pythonラッパーです。
 
+---
+
 ## インストール
 ```
 pip install ytwrap
@@ -29,4 +31,35 @@ stats = comment.count_comments_and_replies('動画ID')
 - `YOUTUBE_API_KEY` : Google Cloud Consoleで取得したAPIキー
 
 ## ライセンス
+MIT
+
+---
+
+# English
+
+A Python wrapper for the YouTube Data API v3.
+
+## Installation
+```
+pip install ytwrap
+```
+
+## Usage
+```python
+import ytwrap
+
+video = ytwrap.YTVideoClient()
+comment = ytwrap.YTCommentClient()
+
+# Example: Get latest video
+latest = video.get_latest_video('CHANNEL_ID')
+
+# Example: Analyze comments
+stats = comment.count_comments_and_replies('VIDEO_ID')
+```
+
+## Required Environment Variable
+- `YOUTUBE_API_KEY`: Your API key from Google Cloud Console
+
+## License
 MIT
