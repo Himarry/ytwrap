@@ -1,0 +1,26 @@
+{
+    "sourceFile": "ytwrap/channel.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1749743703741,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1749743709934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,26 +10,8 @@\n         self.youtube = youtube_api\r\n         self.channel_id = channel_id\r\n         self.community_url = f\"https://www.youtube.com/channel/{channel_id}/community\"\r\n \r\n-    def get_upcoming_live_streams(self, max_results: int = 10) -> List[Dict]:\r\n-        \"\"\"\r\n-        APIで今後のライブ配信予定を取得\r\n-        \"\"\"\r\n-        try:\r\n-            response = self.youtube.search().list(\r\n-                part='snippet',\r\n-                channelId=self.channel_id,\r\n-                type='video',\r\n-                eventType='upcoming',\r\n-                maxResults=max_results,\r\n-                order='date'\r\n-            ).execute()\r\n-            return response.get('items', [])\r\n-        except Exception as e:\r\n-            print(f\"ライブ配信予定取得エラー: {e}\")\r\n-            return []\r\n-\r\n     def get_community_posts(self, max_posts: int = 5) -> List[Dict]:\r\n         \"\"\"\r\n         スクレイピングでコミュニティ投稿を取得\r\n         \"\"\"\r\n"
+                },
+                {
+                    "date": 1749791867973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,30 +0,0 @@\n-import requests\r\n-from bs4 import BeautifulSoup\r\n-from typing import List, Dict\r\n-\r\n-class YTChannelClient:\r\n-    \"\"\"\r\n-    YouTubeチャンネルの動画・ライブ・コミュニティ投稿を取得するラッパー\r\n-    \"\"\"\r\n-    def __init__(self, youtube_api, channel_id: str):\r\n-        self.youtube = youtube_api\r\n-        self.channel_id = channel_id\r\n-        self.community_url = f\"https://www.youtube.com/channel/{channel_id}/community\"\r\n-\r\n-    def get_community_posts(self, max_posts: int = 5) -> List[Dict]:\r\n-        \"\"\"\r\n-        スクレイピングでコミュニティ投稿を取得\r\n-        \"\"\"\r\n-        resp = requests.get(self.community_url)\r\n-        if resp.status_code != 200:\r\n-            print(f\"取得失敗: {resp.status_code}\")\r\n-            return []\r\n-        soup = BeautifulSoup(resp.text, \"html.parser\")\r\n-        posts = []\r\n-        # 構造が変わることが多いので、動かなくなったらここを修正\r\n-        for post_div in soup.find_all(\"yt-formatted-string\", {\"id\": \"content-text\"}):\r\n-            post_text = post_div.get_text()\r\n-            posts.append({\"text\": post_text})\r\n-            if len(posts) >= max_posts:\r\n-                break\r\n-        return posts\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1749743703741,
+            "name": "Commit-0",
+            "content": "import requests\r\nfrom bs4 import BeautifulSoup\r\nfrom typing import List, Dict\r\n\r\nclass YTChannelClient:\r\n    \"\"\"\r\n    YouTubeチャンネルの動画・ライブ・コミュニティ投稿を取得するラッパー\r\n    \"\"\"\r\n    def __init__(self, youtube_api, channel_id: str):\r\n        self.youtube = youtube_api\r\n        self.channel_id = channel_id\r\n        self.community_url = f\"https://www.youtube.com/channel/{channel_id}/community\"\r\n\r\n    def get_upcoming_live_streams(self, max_results: int = 10) -> List[Dict]:\r\n        \"\"\"\r\n        APIで今後のライブ配信予定を取得\r\n        \"\"\"\r\n        try:\r\n            response = self.youtube.search().list(\r\n                part='snippet',\r\n                channelId=self.channel_id,\r\n                type='video',\r\n                eventType='upcoming',\r\n                maxResults=max_results,\r\n                order='date'\r\n            ).execute()\r\n            return response.get('items', [])\r\n        except Exception as e:\r\n            print(f\"ライブ配信予定取得エラー: {e}\")\r\n            return []\r\n\r\n    def get_community_posts(self, max_posts: int = 5) -> List[Dict]:\r\n        \"\"\"\r\n        スクレイピングでコミュニティ投稿を取得\r\n        \"\"\"\r\n        resp = requests.get(self.community_url)\r\n        if resp.status_code != 200:\r\n            print(f\"取得失敗: {resp.status_code}\")\r\n            return []\r\n        soup = BeautifulSoup(resp.text, \"html.parser\")\r\n        posts = []\r\n        # 構造が変わることが多いので、動かなくなったらここを修正\r\n        for post_div in soup.find_all(\"yt-formatted-string\", {\"id\": \"content-text\"}):\r\n            post_text = post_div.get_text()\r\n            posts.append({\"text\": post_text})\r\n            if len(posts) >= max_posts:\r\n                break\r\n        return posts"
+        }
+    ]
+}

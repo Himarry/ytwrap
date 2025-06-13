@@ -1,0 +1,18 @@
+{
+    "sourceFile": "predict_5000.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1749792079780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1749792079780,
+            "name": "Commit-0",
+            "content": "from ytwrap.subscribe import YTSubscribeClient\r\n\r\n# サンプル: チャンネル登録者履歴（古い順）\r\nhistory = [\r\n    (\"2025-05-01\", 4200),\r\n    (\"2025-05-10\", 4400),\r\n    (\"2025-05-20\", 4600),\r\n    (\"2025-06-01\", 4800),\r\n    (\"2025-06-10\", 4950),\r\n]\r\n\r\n# 目標登録者数\r\nTARGET = 5000\r\n\r\nclient = YTSubscribeClient()\r\nresult = client.predict_milestone_date(history, TARGET)\r\n\r\nif result:\r\n    print(f\"登録者{TARGET}人突破予測日: {result['estimated_date']}\")\r\n    print(f\"あと{result['days_left']}日 (1日あたり増加数: {result['slope']:.2f})\")\r\nelse:\r\n    print(\"予測できませんでした（登録者数が増加していない、または履歴が不足）\")\r\n"
+        }
+    ]
+}

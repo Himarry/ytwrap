@@ -1,0 +1,18 @@
+{
+    "sourceFile": "test_video_all_functions.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1749738542187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1749738542187,
+            "name": "Commit-0",
+            "content": "# video.py内の全関数を自動テストするスクリプト\r\nimport inspect\r\nimport ytwrap.video\r\n\r\n\r\ndef test_all_functions_in_video():\r\n    module = ytwrap.video\r\n    results = {}\r\n    for name, obj in inspect.getmembers(module):\r\n        if inspect.isfunction(obj) and obj.__module__ == module.__name__:\r\n            try:\r\n                # 引数なしで呼び出せる場合のみ実行\r\n                sig = inspect.signature(obj)\r\n                if all(p.default != inspect.Parameter.empty or p.kind in (inspect.Parameter.VAR_POSITIONAL, inspect.Parameter.VAR_KEYWORD)\r\n                       for p in sig.parameters.values()):\r\n                    result = obj()\r\n                    results[name] = (True, result)\r\n                elif name == 'duration_to_seconds':\r\n                    # duration_to_secondsはテスト用引数を与える\r\n                    result = obj('PT59S')\r\n                    results[name] = (True, result)\r\n                elif name == 'classify_youtube_videos':\r\n                    # classify_youtube_videosはテスト用引数を与える\r\n                    test_data = [{\r\n                        'snippet': {'title': 'Test #shorts'},\r\n                        'contentDetails': {'duration': 'PT59S'},\r\n                        'player': {'width': 720, 'height': 1280},\r\n                        'liveStreamingDetails': {}\r\n                    }]\r\n                    result = obj(test_data)\r\n                    results[name] = (True, result)\r\n                else:\r\n                    results[name] = (False, 'Skipped: needs arguments')\r\n            except Exception as e:\r\n                results[name] = (False, str(e))\r\n    return results\r\n\r\nif __name__ == '__main__':\r\n    import pprint\r\n    pprint.pprint(test_all_functions_in_video())\r\n"
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+{
+    "sourceFile": "ytwrap/streams.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1749741980046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1749741985663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-class\n\\ No newline at end of file\n+class YTVideoClient:\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749741992161,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-class YTVideoClient:\n\\ No newline at end of file\n+class YT:\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749742000435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-class YT:\n\\ No newline at end of file\n+class YTStreams:\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749742006761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-class YTStreams:\n\\ No newline at end of file\n+class YTStreamsClient:\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749742034773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,20 @@\n-class YTStreamsClient:\n\\ No newline at end of file\n+class YTStreamsClient:\r\n+    \r\n+    def get_upcoming_live_streams(self, channel_id: str, max_results: int = 10) -> list:\r\n+    \"\"\"\r\n+    指定チャンネルの今後のライブ配信予定（未配信のライブ）一覧を取得する\r\n+    Returns: 動画情報リスト\r\n+    \"\"\"\r\n+    try:\r\n+        response = self.youtube.search().list(\r\n+            part='snippet',\r\n+            channelId=channel_id,\r\n+            type='video',\r\n+            eventType='upcoming',  # これで「これから始まるライブ」のみに絞れる\r\n+            maxResults=max_results,\r\n+            order='date'\r\n+        ).execute()\r\n+        return response.get('items', [])\r\n+    except HttpError as e:\r\n+        print(f\"ライブ配信予定取得エラー: {e}\")\r\n+        return []\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749742055007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n class YTStreamsClient:\r\n     \r\n     def get_upcoming_live_streams(self, channel_id: str, max_results: int = 10) -> list:\r\n-    \"\"\"\r\n-    指定チャンネルの今後のライブ配信予定（未配信のライブ）一覧を取得する\r\n-    Returns: 動画情報リスト\r\n-    \"\"\"\r\n+        \"\"\"\r\n+        指定チャンネルの今後のライブ配信予定（未配信のライブ）一覧を取得する\r\n+        Returns: 動画情報リスト\r\n+        \"\"\"\r\n     try:\r\n         response = self.youtube.search().list(\r\n             part='snippet',\r\n             channelId=channel_id,\r\n"
+                },
+                {
+                    "date": 1749742060215,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n class YTStreamsClient:\r\n     \r\n     def get_upcoming_live_streams(self, channel_id: str, max_results: int = 10) -> list:\r\n-        \"\"\"\r\n-        指定チャンネルの今後のライブ配信予定（未配信のライブ）一覧を取得する\r\n-        Returns: 動画情報リスト\r\n-        \"\"\"\r\n+    \"\"\"\r\n+    指定チャンネルの今後のライブ配信予定（未配信のライブ）一覧を取得する\r\n+    Returns: 動画情報リスト\r\n+    \"\"\"\r\n     try:\r\n         response = self.youtube.search().list(\r\n             part='snippet',\r\n             channelId=channel_id,\r\n"
+                },
+                {
+                    "date": 1749742079221,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,22 @@\n+from googleapiclient.errors import HttpError\r\n+\r\n class YTStreamsClient:\r\n     \r\n     def get_upcoming_live_streams(self, channel_id: str, max_results: int = 10) -> list:\r\n-    \"\"\"\r\n-    指定チャンネルの今後のライブ配信予定（未配信のライブ）一覧を取得する\r\n-    Returns: 動画情報リスト\r\n-    \"\"\"\r\n-    try:\r\n-        response = self.youtube.search().list(\r\n-            part='snippet',\r\n-            channelId=channel_id,\r\n-            type='video',\r\n-            eventType='upcoming',  # これで「これから始まるライブ」のみに絞れる\r\n-            maxResults=max_results,\r\n-            order='date'\r\n-        ).execute()\r\n-        return response.get('items', [])\r\n-    except HttpError as e:\r\n\\ No newline at end of file\n-        print(f\"ライブ配信予定取得エラー: {e}\")\r\n-        return []\n+        \"\"\"\r\n+        指定チャンネルの今後のライブ配信予定（未配信のライブ）一覧を取得する\r\n+        Returns: 動画情報リスト\r\n+        \"\"\"\r\n+        try:\r\n+            response = self.youtube.search().list(\r\n+                part='snippet',\r\n+                channelId=channel_id,\r\n+                type='video',\r\n+                eventType='upcoming',  # これで「これから始まるライブ」のみに絞れる\r\n+                maxResults=max_results,\r\n+                order='date'\r\n+            ).execute()\r\n+            return response.get('items', [])\r\n+        except HttpError as e:\r\n+            print(f\"ライブ配信予定取得エラー: {e}\")\r\n+            return []\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749742130860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,4 @@\n from googleapiclient.errors import HttpError\r\n \r\n class YTStreamsClient:\r\n     \r\n-    def get_upcoming_live_streams(self, channel_id: str, max_results: int = 10) -> list:\r\n-        \"\"\"\r\n-        指定チャンネルの今後のライブ配信予定（未配信のライブ）一覧を取得する\r\n-        Returns: 動画情報リスト\r\n-        \"\"\"\r\n-        try:\r\n-            response = self.youtube.search().list(\r\n-                part='snippet',\r\n-                channelId=channel_id,\r\n-                type='video',\r\n-                eventType='upcoming',  # これで「これから始まるライブ」のみに絞れる\r\n-                maxResults=max_results,\r\n-                order='date'\r\n-            ).execute()\r\n-            return response.get('items', [])\r\n-        except HttpError as e:\r\n-            print(f\"ライブ配信予定取得エラー: {e}\")\r\n-            return []\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749742136907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,2 @@\n-from googleapiclient.errors import HttpError\r\n-\r\n class YTStreamsClient:\r\n     \r\n"
+                },
+                {
+                    "date": 1749742152769,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,31 @@\n class YTStreamsClient:\r\n     \r\n+class YTStreamsClient:\r\n+    \"\"\"\r\n+    YouTubeライブ配信関連の動画取得専用クラス\r\n+    \"\"\"\r\n+    def __init__(self, youtube):\r\n+        \"\"\"\r\n+        :param youtube: googleapiclient.discovery.buildで作成したYouTube APIインスタンス\r\n+        \"\"\"\r\n+        self.youtube = youtube\r\n+\r\n+    def get_upcoming_live_streams(self, channel_id: str, max_results: int = 10) -> list:\r\n+        \"\"\"\r\n+        指定チャンネルの今後のライブ配信予定（未配信のライブ）一覧を取得する\r\n+        Returns: 動画情報リスト\r\n+        \"\"\"\r\n+        from googleapiclient.errors import HttpError\r\n+        try:\r\n+            response = self.youtube.search().list(\r\n+                part='snippet',\r\n+                channelId=channel_id,\r\n+                type='video',\r\n+                eventType='upcoming',  # これで「これから始まるライブ」のみに絞れる\r\n+                maxResults=max_results,\r\n+                order='date'\r\n+            ).execute()\r\n+            return response.get('items', [])\r\n+        except HttpError as e:\r\n+            print(f\"ライブ配信予定取得エラー: {e}\")\r\n+            return []\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1749741980046,
+            "name": "Commit-0",
+            "content": "class"
+        }
+    ]
+}

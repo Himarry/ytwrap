@@ -1,0 +1,22 @@
+{
+    "sourceFile": "test_growth_history.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1749793737151,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1749799570111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +0,0 @@\n-[\r\n-  {\r\n-    \"channel_id\": \"UCYrHEsf7bhiFJssY5btS7Zg\",\r\n-    \"date\": \"2025-06-11\",\r\n-    \"subscribers\": 2000,\r\n-    \"growth_per_day\": 0\r\n-  },\r\n-  {\r\n-    \"channel_id\": \"UCYrHEsf7bhiFJssY5btS7Zg\",\r\n-    \"date\": \"2025-06-11\",\r\n-    \"subscribers\": 2500,\r\n-    \"growth_per_day\": -250.0\r\n-  },\r\n-  {\r\n-    \"channel_id\": \"UCYrHEsf7bhiFJssY5btS7Zg\",\r\n-    \"date\": \"2025-06-12\",\r\n-    \"subscribers\": 3000,\r\n-    \"growth_per_day\": 500.0\r\n-  }\r\n-]\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1749793737151,
+            "name": "Commit-0",
+            "content": "[\r\n  {\r\n    \"channel_id\": \"UCYrHEsf7bhiFJssY5btS7Zg\",\r\n    \"date\": \"2025-06-11\",\r\n    \"subscribers\": 2000,\r\n    \"growth_per_day\": 0\r\n  },\r\n  {\r\n    \"channel_id\": \"UCYrHEsf7bhiFJssY5btS7Zg\",\r\n    \"date\": \"2025-06-11\",\r\n    \"subscribers\": 2500,\r\n    \"growth_per_day\": -250.0\r\n  },\r\n  {\r\n    \"channel_id\": \"UCYrHEsf7bhiFJssY5btS7Zg\",\r\n    \"date\": \"2025-06-12\",\r\n    \"subscribers\": 3000,\r\n    \"growth_per_day\": 500.0\r\n  }\r\n]"
+        }
+    ]
+}

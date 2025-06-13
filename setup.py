@@ -5,7 +5,7 @@ with open("pypi.md", encoding="utf-8") as f:
 
 setup(
     name="ytwrap",
-    version="0.1.7",
+    version="0.2.4",
     description="Python wrapper for the YouTube Data API v3.",
     author="Himarry",
     url="https://github.com/Himarry/ytwrap",
@@ -15,7 +15,9 @@ setup(
     },
     packages=find_packages(),
     install_requires=[
-        "google-api-python-client"
+        "google-api-python-client",
+        "isodate",
+        "pytz"
     ],
     python_requires='>=3.7',
     classifiers=[

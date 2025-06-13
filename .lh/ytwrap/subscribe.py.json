@@ -1,0 +1,50 @@
+{
+    "sourceFile": "ytwrap/subscribe.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1749791299163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1749791306722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-class \n\\ No newline at end of file\n+class YTSubscribe\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749791315829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,2 @@\n-class YTSubscribe\n\\ No newline at end of file\n+class YTSubscribeClient:\r\n+    \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749791346831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,44 @@\n+import numpy as np\r\n+from datetime import datetime, timedelta\r\n\\ No newline at end of file\n+from typing import List, Tuple, Optional\r\n+\r\n class YTSubscribeClient:\r\n-    \n+    \"\"\"\r\n+    YouTubeチャンネル登録者数の予測・解析用クライアント\r\n+    \"\"\"\r\n+    def __init__(self):\r\n+        pass\r\n+\r\n+    def predict_milestone_date(\r\n+        self, \r\n+        history: List[Tuple[str, int]],  # 例: [(\"2025-06-01\", 8000), ...]\r\n+        target: int\r\n+    ) -> Optional[dict]:\r\n+        \"\"\"\r\n+        登録者履歴から、指定した登録者数（target）到達日を予測します。\r\n+\r\n+        :param history: [(\"YYYY-MM-DD\", 登録者数)] のリスト（古い順）\r\n+        :param target: 到達目標の登録者数\r\n+        :return: {\"estimated_date\": \"YYYY-MM-DD\", \"days_left\": 残り日数, \"slope\": 1日あたり増加数, \"intercept\": 切片} 予測不能時はNone\r\n+        \"\"\"\r\n+        if len(history) < 2:\r\n+            return None\r\n+\r\n+        dates = [datetime.strptime(d, \"%Y-%m-%d\") for d, _ in history]\r\n+        base_date = dates[0]\r\n+        days = np.array([(d - base_date).days for d in dates])\r\n+        subscribers = np.array([s for _, s in history])\r\n+\r\n+        # 線形近似\r\n+        slope, intercept = np.polyfit(days, subscribers, 1)\r\n+        if slope <= 0:\r\n+            return None  # 伸びていない場合は予測不可\r\n+\r\n+        days_to_target = (target - intercept) / slope\r\n+        estimated_date = base_date + timedelta(days=days_to_target)\r\n+        return {\r\n+            \"estimated_date\": estimated_date.strftime(\"%Y-%m-%d\"),\r\n+            \"days_left\": int(days_to_target),\r\n+            \"slope\": slope,\r\n+            \"intercept\": intercept\r\n+        }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749791460941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \r\n         days_to_target = (target - intercept) / slope\r\n         estimated_date = base_date + timedelta(days=days_to_target)\r\n         return {\r\n-            \"estimated_date\": estimated_date.strftime(\"%Y-%m-%d\"),\r\n-            \"days_left\": int(days_to_target),\r\n-            \"slope\": slope,\r\n-            \"intercept\": intercept\r\n-        }\n\\ No newline at end of file\n+    \"estimated_date\": estimated_date.strftime(\"%Y年%m月%d日\"),\r\n+    \"days_left\": int(days_to_target),\r\n+    \"slope\": slope,\r\n+    \"intercept\": intercept\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749791471778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \r\n         days_to_target = (target - intercept) / slope\r\n         estimated_date = base_date + timedelta(days=days_to_target)\r\n         return {\r\n-    \"estimated_date\": estimated_date.strftime(\"%Y年%m月%d日\"),\r\n-    \"days_left\": int(days_to_target),\r\n-    \"slope\": slope,\r\n-    \"intercept\": intercept\r\n-}\n\\ No newline at end of file\n+        \"estimated_date\": estimated_date.strftime(\"%Y年%m月%d日\"),\r\n+        \"days_left\": int(days_to_target),\r\n+        \"slope\": slope,\r\n+        \"intercept\": intercept\r\n+    }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749793585037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,9 @@\n from datetime import datetime, timedelta\r\n from typing import List, Tuple, Optional\r\n \r\n class YTSubscribeClient:\r\n-    \"\"\"\r\n-    YouTubeチャンネル登録者数の予測・解析用クライアント\r\n-    \"\"\"\r\n-    def __init__(self):\r\n-        pass\r\n+    def __init__(self, channel_id):\r\n \r\n     def predict_milestone_date(\r\n         self, \r\n         history: List[Tuple[str, int]],  # 例: [(\"2025-06-01\", 8000), ...]\r\n@@ -36,9 +32,9 @@\n \r\n         days_to_target = (target - intercept) / slope\r\n         estimated_date = base_date + timedelta(days=days_to_target)\r\n         return {\r\n-        \"estimated_date\": estimated_date.strftime(\"%Y年%m月%d日\"),\r\n-        \"days_left\": int(days_to_target),\r\n-        \"slope\": slope,\r\n-        \"intercept\": intercept\r\n-    }\n\\ No newline at end of file\n+            \"estimated_date\": estimated_date.strftime(\"%Y年%m月%d日\"),\r\n+            \"days_left\": int(days_to_target),\r\n+            \"slope\": slope,\r\n+            \"intercept\": intercept\r\n+        }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1749793590097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,13 @@\n from datetime import datetime, timedelta\r\n from typing import List, Tuple, Optional\r\n \r\n class YTSubscribeClient:\r\n-    def __init__(self, channel_id):\r\n+    \"\"\"\r\n+    YouTubeチャンネル登録者数の予測・解析用クライアント\r\n+    \"\"\"\r\n+    def __init__(self):\r\n+        pass\r\n \r\n     def predict_milestone_date(\r\n         self, \r\n         history: List[Tuple[str, int]],  # 例: [(\"2025-06-01\", 8000), ...]\r\n"
+                },
+                {
+                    "date": 1749793664218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,26 +2,34 @@\n from datetime import datetime, timedelta\r\n from typing import List, Tuple, Optional\r\n \r\n class YTSubscribeClient:\r\n-    \"\"\"\r\n-    YouTubeチャンネル登録者数の予測・解析用クライアント\r\n-    \"\"\"\r\n-    def __init__(self):\r\n-        pass\r\n+    def __init__(self, channel_id):\r\n+        self.channel_id = channel_id\r\n+        self.history = []  # [(\"YYYY-MM-DD\", 登録者数)] のリスト（古い順）\r\n \r\n+    def add_history(self, count: int, date: Optional[datetime] = None):\r\n+        \"\"\"\r\n+        履歴を追加するメソッド\r\n+        :param count: 登録者数\r\n+        :param date: 日付（datetime型、省略時は今日）\r\n+        \"\"\"\r\n+        if date is None:\r\n+            date = datetime.now()\r\n+        date_str = date.strftime(\"%Y-%m-%d\")\r\n+        self.history.append((date_str, count))\r\n+\r\n     def predict_milestone_date(\r\n         self, \r\n-        history: List[Tuple[str, int]],  # 例: [(\"2025-06-01\", 8000), ...]\r\n         target: int\r\n     ) -> Optional[dict]:\r\n         \"\"\"\r\n         登録者履歴から、指定した登録者数（target）到達日を予測します。\r\n \r\n-        :param history: [(\"YYYY-MM-DD\", 登録者数)] のリスト（古い順）\r\n         :param target: 到達目標の登録者数\r\n-        :return: {\"estimated_date\": \"YYYY-MM-DD\", \"days_left\": 残り日数, \"slope\": 1日あたり増加数, \"intercept\": 切片} 予測不能時はNone\r\n+        :return: {\"estimated_date\": \"YYYY年mm月dd日\", \"days_left\": 残り日数, \"slope\": 1日あたり増加数, \"intercept\": 切片} 予測不能時はNone\r\n         \"\"\"\r\n+        history = self.history\r\n         if len(history) < 2:\r\n             return None\r\n \r\n         dates = [datetime.strptime(d, \"%Y-%m-%d\") for d, _ in history]\r\n"
+                }
+            ],
+            "date": 1749791299163,
+            "name": "Commit-0",
+            "content": "class "
+        }
+    ]
+}

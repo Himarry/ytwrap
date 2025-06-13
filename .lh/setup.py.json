@@ -1,0 +1,18 @@
+{
+    "sourceFile": "setup.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1749738465231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1749738465231,
+            "name": "Commit-0",
+            "content": "from setuptools import setup, find_packages\r\n\r\nwith open(\"pypi.md\", encoding=\"utf-8\") as f:\r\n    long_description = f.read()\r\n\r\nsetup(\r\n    name=\"ytwrap\",\r\n    version=\"0.1.7\",\r\n    description=\"Python wrapper for the YouTube Data API v3.\",\r\n    author=\"Himarry\",\r\n    url=\"https://github.com/Himarry/ytwrap\",\r\n    project_urls={\r\n        \"Source\": \"https://github.com/Himarry/ytwrap\",\r\n        \"Tracker\": \"https://github.com/Himarry/ytwrap/issues\",\r\n    },\r\n    packages=find_packages(),\r\n    install_requires=[\r\n        \"google-api-python-client\",\r\n        \"isodate\",\r\n        \"pytz\"\r\n    ],\r\n    python_requires='>=3.7',\r\n    classifiers=[\r\n        \"Programming Language :: Python :: 3\",\r\n        \"Programming Language :: Python :: 3.7\",\r\n        \"Programming Language :: Python :: 3.8\",\r\n        \"Programming Language :: Python :: 3.9\",\r\n        \"Programming Language :: Python :: 3.10\",\r\n        \"Programming Language :: Python :: 3.11\",\r\n        \"Programming Language :: Python :: 3.12\",\r\n    ],\r\n    long_description=long_description,\r\n    long_description_content_type=\"text/markdown\",\r\n)\r\n"
+        }
+    ]
+}

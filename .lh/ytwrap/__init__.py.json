@@ -1,0 +1,66 @@
+{
+    "sourceFile": "ytwrap/__init__.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 12,
+            "patches": [
+                {
+                    "date": 1749791899151,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1749791907433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n from .video import YTVideoClient\r\n from .comment import YTCommentClient\r\n from .utils import YTUtilsClient\r\n+from .channel import\r\n \r\n-\r\n __all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\"]\r\n"
+                },
+                {
+                    "date": 1749791918417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n from .video import YTVideoClient\r\n from .comment import YTCommentClient\r\n from .utils import YTUtilsClient\r\n-from .channel import\r\n+from .channel import \r\n \r\n __all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\"]\r\n"
+                },
+                {
+                    "date": 1749791924833,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n from .video import YTVideoClient\r\n from .comment import YTCommentClient\r\n from .utils import YTUtilsClient\r\n-from .channel import \r\n+from .channel import *\r\n+from\r\n \r\n __all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\"]\r\n"
+                },
+                {
+                    "date": 1749791932674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n from .video import YTVideoClient\r\n from .comment import YTCommentClient\r\n from .utils import YTUtilsClient\r\n from .channel import *\r\n-from\r\n+from .streams\r\n \r\n __all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\"]\r\n"
+                },
+                {
+                    "date": 1749791938115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n from .video import YTVideoClient\r\n from .comment import YTCommentClient\r\n from .utils import YTUtilsClient\r\n from .channel import *\r\n-from .streams\r\n+from .streams import \r\n \r\n __all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\"]\r\n"
+                },
+                {
+                    "date": 1749791952100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n from .video import YTVideoClient\r\n from .comment import YTCommentClient\r\n from .utils import YTUtilsClient\r\n from .channel import *\r\n-from .streams import \r\n+from .streams import YTStreamsClient\r\n \r\n __all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\"]\r\n"
+                },
+                {
+                    "date": 1749791962622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,7 @@\n from .comment import YTCommentClient\r\n from .utils import YTUtilsClient\r\n from .channel import *\r\n from .streams import YTStreamsClient\r\n+from .s\r\n \r\n __all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\"]\r\n"
+                },
+                {
+                    "date": 1749791970254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,7 @@\n from .comment import YTCommentClient\r\n from .utils import YTUtilsClient\r\n from .channel import *\r\n from .streams import YTStreamsClient\r\n-from .s\r\n+from .subscribe import \r\n \r\n __all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\"]\r\n"
+                },
+                {
+                    "date": 1749791981520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,7 @@\n from .comment import YTCommentClient\r\n from .utils import YTUtilsClient\r\n from .channel import *\r\n from .streams import YTStreamsClient\r\n-from .subscribe import \r\n+from .subscribe import YTSubscribeClient\r\n \r\n-__all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\"]\r\n+__all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\", \"YTStreamsClient\"]\r\n"
+                },
+                {
+                    "date": 1749791988179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,5 @@\n from .channel import *\r\n from .streams import YTStreamsClient\r\n from .subscribe import YTSubscribeClient\r\n \r\n-__all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\", \"YTStreamsClient\"]\r\n+__all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\", \"YTStreamsClient\", \"YTSubscribeClient\"]\r\n"
+                },
+                {
+                    "date": 1749793121869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,7 @@\n from .utils import YTUtilsClient\r\n from .channel import *\r\n from .streams import YTStreamsClient\r\n from .subscribe import YTSubscribeClient\r\n+from .\r\n \r\n __all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\", \"YTStreamsClient\", \"YTSubscribeClient\"]\r\n"
+                },
+                {
+                    "date": 1749793127035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,7 +3,7 @@\n from .utils import YTUtilsClient\r\n from .channel import *\r\n from .streams import YTStreamsClient\r\n from .subscribe import YTSubscribeClient\r\n-from .analysi import\r\n+from .analysi import \r\n \r\n __all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\", \"YTStreamsClient\", \"YTSubscribeClient\"]\r\n"
+                }
+            ],
+            "date": 1749791899151,
+            "name": "Commit-0",
+            "content": "from .video import YTVideoClient\r\nfrom .comment import YTCommentClient\r\nfrom .utils import YTUtilsClient\r\n\r\n\r\n__all__ = [\"YTVideoClient\", \"YTCommentClient\", \"YTUtilsClient\"]\r\n"
+        }
+    ]
+}

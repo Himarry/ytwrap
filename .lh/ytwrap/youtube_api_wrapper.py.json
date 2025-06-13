@@ -1,0 +1,18 @@
+{
+    "sourceFile": "ytwrap/youtube_api_wrapper.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1749739072344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1749739072344,
+            "name": "Commit-0",
+            "content": "# 不要なため空ファイル化\r\n"
+        }
+    ]
+}
